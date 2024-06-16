@@ -40,7 +40,7 @@ router.post("/register",
             secure: process.env.NODE_ENV === "production", // only accept cookies over https, def want this in production
             maxAge: 86400000
         });
-        return res.sendStatus(200);
+        return res.status(200).json({message: "Registration worked!"});
     }
     catch(e){
         console.log(e);
