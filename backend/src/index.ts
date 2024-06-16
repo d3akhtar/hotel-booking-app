@@ -11,6 +11,9 @@ app.use(express.json()) // Converts body into json automatically
 app.use(express.urlencoded({extended:true})) // Helps parse url to get query params
 app.use(cors())
 
+app.get("/api/test", async (req, res : Response) => {
+    res.json({message: "nice"})
+})
 app.use("/api/users", userRoutes);
 
 app.listen(5000, () => {

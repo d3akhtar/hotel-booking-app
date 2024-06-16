@@ -8,14 +8,14 @@ const router = express.Router();
 router.post("/register", 
     [
         check("firstName", "First Name is required").isString(),
-        check("lastName", "Last Name is required").isString,
-        check("email", "Email is required").isString,
+        check("lastName", "Last Name is required").isString(),
+        check("email", "Email is required").isString(),
         check("password", "Password with 6 or more characters is required").isLength({min: 6})
     ], 
     async(req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()){
-        return res.status(400).json({message: errors.array});
+        return res.status(400).json({message: errors.array()});
     }
     try{
         let user = await User.findOne(({
