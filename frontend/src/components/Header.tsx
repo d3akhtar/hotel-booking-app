@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Hero from './Hero'
 import { useAppContext } from '../../contexts/AppContext'
+import SignOutButton from './SignOutButton';
+
 
 function Header() {
   const {isLoggedIn} = useAppContext();
@@ -18,7 +20,7 @@ function Header() {
                   <>
                     <Link to="/my-bookings" className='flex items-center bg-white text-blue-600 px-3 font-bold hover:bg-gray-100'>My Bookings</Link>
                     <Link to="/my-hotels" className='flex items-center bg-white text-blue-600 px-3 font-bold hover:bg-gray-100'>My Hotels</Link>
-                    <button className='flex items-center bg-white text-blue-600 px-3 font-bold hover:bg-gray-100'>Sign Out</button>
+                    <SignOutButton/>
                   </>
                 ):
                 (

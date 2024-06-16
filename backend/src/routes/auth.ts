@@ -60,4 +60,11 @@ router.get("/validateToken", verifyToken /* This is where middleware goes */, (r
     res.status(200).send({userId: req.userId})
 })
 
+router.post("/sign-out", async (req: Request, res: Response) => {
+    res.cookie("auth_token", "", {
+        expires: new Date(0), // creates a new token with the expiration date set at the time of creation, so expired right away
+    });
+    res.sendStatus(200)
+})
+
 export default router;

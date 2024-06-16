@@ -55,3 +55,14 @@ export const login = async(formData:SignInFormData) => {
         return resultBody;
     }
 }
+
+export const signOut = async() => {
+    const url = `${API_BASE_URL}/api/auth/sign-out`;
+    const result = await fetch(url, {
+        method: "POST",
+        credentials: "include" // anytime we make a post request, we want to include http cookies with the request, and we also want to set any cookies we get back
+    });
+    if (!result.ok){
+        throw new Error("Unknown error while signing out");
+    }
+}
