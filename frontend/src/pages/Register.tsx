@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 import { Link } from 'react-router-dom'
 import * as apiClient from '../api-client';
+import { useAppContext } from '../../contexts/AppContext';
 
 export type RegisterFormData = {
     firstName: string,
@@ -18,15 +19,23 @@ export type RegisterFormData = {
 
 function Register() {
 
+    const {showToast} = useAppContext(); // ctrl space inside the spaces to show all the available properties
+
     const { register,watch,handleSubmit, formState: { errors } } = useForm<RegisterFormData>()
 
     // use react query here since states are built in
     const mutation = useMutation(apiClient.register, {
         onSuccess: () => {
-            console.log("registered");
+            showToast({
+                message: "You have successfully registered.",
+                type: "SUCCESS"
+            });
         },
         onError: (error: Error) => {
-            console.log(error.message); 
+            showToast({
+                message: error.message,
+                type: "ERROR"
+            }); 
         }
     })
     
