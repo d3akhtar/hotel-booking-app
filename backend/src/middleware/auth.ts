@@ -17,9 +17,12 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     try{
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY as string);
         req.userId = (decoded as JwtPayload).userId;
+        next();
     }
     catch(e){
         console.log(e);
-        return res.status(500).json({message: "Something went wrong"});
+        return res.status(401).json({message: "Unauthorized"});
     }
 }
+
+export default verifyToken;

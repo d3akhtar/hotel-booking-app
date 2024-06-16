@@ -12,7 +12,7 @@ export const register = async(formData:RegisterFormData) =>{
         },
         body: JSON.stringify(formData),
         credentials: "include" // anytime we make a post request, we want to include http cookies with the request, and we also want to set any cookies we get back
-        
+
     });
     
     const resultBody = await result.json();
@@ -22,4 +22,14 @@ export const register = async(formData:RegisterFormData) =>{
     else{
         return resultBody;
     }
+}
+
+export const validateToken = async() => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/validateToken`, {
+        credentials: "include" // include the cookie
+    });
+    if (!response.ok){
+        throw new Error("Token invalid")
+    }
+    return response.json();
 }

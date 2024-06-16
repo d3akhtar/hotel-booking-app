@@ -3,6 +3,7 @@ import { check, validationResult } from "express-validator";
 import User from "../models/user";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import verifyToken from "../middleware/auth";
 
 const router = express.Router();
 
@@ -55,7 +56,7 @@ router.post("/login",
         }
     })
 
-router.get("/validateToken", verifyToken, (req: Request, res:Response) => {
+router.get("/validateToken", verifyToken /* This is where middleware goes */, (req: Request, res:Response) => {
     res.status(200).send({userId: req.userId})
 })
 
