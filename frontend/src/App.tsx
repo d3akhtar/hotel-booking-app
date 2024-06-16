@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Layout } from './layout'
-import { Register } from './pages'
+import { Register, SignIn } from './pages'
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         </Route>
         <Route path="/sign-in" element={
           <Layout>
-            <p>login</p>
+            <SignIn/>
           </Layout>}>
         </Route>
         <Route path="*" element={<Navigate to="/"/>}/>
