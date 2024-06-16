@@ -10,7 +10,9 @@ export const register = async(formData:RegisterFormData) =>{
         headers: {
             "Content-type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        credentials: "include" // anytime we make a post request, we want to include http cookies with the request, and we also want to set any cookies we get back
+        
     });
     
     const resultBody = await result.json();
