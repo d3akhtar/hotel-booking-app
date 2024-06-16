@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 import * as apiClient from '../api-client';
 import { useAppContext } from '../../contexts/AppContext';
@@ -18,7 +18,8 @@ export type RegisterFormData = {
 // default would be flex-col
 
 function Register() {
-
+    const queryClient = useQueryClient();
+    
     const {showToast} = useAppContext(); // ctrl space inside the spaces to show all the available properties
 
     const navigate = useNavigate();
@@ -27,7 +28,8 @@ function Register() {
 
     // use react query here since states are built in
     const mutation = useMutation(apiClient.register, {
-        onSuccess: () => {
+        onSuccess: async () => {
+            await queryClient.invalidateQueries("validateToken"); // so we don't need to reload the page to validate the token
             showToast({
                 message: "You have successfully registered.",
                 type: "SUCCESS"
