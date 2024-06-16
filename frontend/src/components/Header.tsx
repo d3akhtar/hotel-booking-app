@@ -18,8 +18,8 @@ function Header() {
               {isLoggedIn ? 
                 (
                   <>
-                    <Link to="/my-bookings" className='flex items-center bg-white text-blue-600 px-3 font-bold hover:bg-gray-100'>My Bookings</Link>
-                    <Link to="/my-hotels" className='flex items-center bg-white text-blue-600 px-3 font-bold hover:bg-gray-100'>My Hotels</Link>
+                    <Link to="/my-bookings" className='flex items-center bg-blue-800 text-white px-3 font-bold hover:bg-blue-700'>My Bookings</Link>
+                    <Link to="/my-hotels" className='flex items-center bg-blue-800 text-white px-3 font-bold hover:bg-blue-700'>My Hotels</Link>
                     <SignOutButton/>
                   </>
                 ):
