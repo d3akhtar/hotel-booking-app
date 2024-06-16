@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as apiClient from '../api-client';
 import { useAppContext } from '../../contexts/AppContext';
 
@@ -21,6 +21,8 @@ function Register() {
 
     const {showToast} = useAppContext(); // ctrl space inside the spaces to show all the available properties
 
+    const navigate = useNavigate();
+
     const { register,watch,handleSubmit, formState: { errors } } = useForm<RegisterFormData>()
 
     // use react query here since states are built in
@@ -30,6 +32,7 @@ function Register() {
                 message: "You have successfully registered.",
                 type: "SUCCESS"
             });
+            navigate("/");
         },
         onError: (error: Error) => {
             showToast({
