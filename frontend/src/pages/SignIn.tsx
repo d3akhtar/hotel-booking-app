@@ -28,7 +28,7 @@ function SignIn() {
         onSuccess: async () => {
             await queryClient.invalidateQueries("validateToken"); // so we don't need to reload the page to validate the token
             showToast({
-                message: "You have successfully logged in.",
+                message: "Sign in Successful!",
                 type: "SUCCESS"
             });
             navigate("/");
