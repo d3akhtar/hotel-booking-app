@@ -2,7 +2,7 @@
 import {RegisterFormData} from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // the way you would use .env file in vite
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ""; // the way you would use .env file in vite
 
 export const register = async(formData:RegisterFormData) =>{
     const url = `${API_BASE_URL}/api/users/register`;

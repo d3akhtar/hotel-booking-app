@@ -4,7 +4,7 @@ type ToastProps = {
     onClose: () => void
 }
 
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 function Toast({message, type, onClose}: ToastProps) {
 

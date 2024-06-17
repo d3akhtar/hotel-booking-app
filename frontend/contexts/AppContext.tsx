@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Toast from "../src/components/Toast";
 import { useQuery } from "react-query";
 import * as apiClient from '../src/api-client'
