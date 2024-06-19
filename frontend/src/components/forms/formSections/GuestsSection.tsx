@@ -1,5 +1,4 @@
-import React from 'react'
-import { useForm, useFormContext } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { HotelFormData } from '../ManageHotelForm';
 
 function GuestsSection() {

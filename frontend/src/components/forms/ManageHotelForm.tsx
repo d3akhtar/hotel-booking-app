@@ -1,4 +1,3 @@
-import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form';
 import DetailsSection from './formSections/DetailsSection';
 import TypeSection from './formSections/TypeSection';

@@ -1,4 +1,3 @@
-import React from 'react'
 import { hotelTypes } from '../../../config/hotel-options-config'
 import { useFormContext } from 'react-hook-form'
 import { HotelFormData } from '../ManageHotelForm';

@@ -1,11 +1,9 @@
-import React from 'react'
 import { useFormContext } from 'react-hook-form';
 import { HotelFormData } from '../ManageHotelForm';
 import { hotelFacilities } from '../../../config/hotel-options-config';
 
 function FacilitiesSection() {
     const {register,formState:{errors},watch} = useFormContext<HotelFormData>();
-    const facilityWatch = watch("facilities");
     return (
             <div className='flex flex-col gap-4 px-10'>
                 <h2 className='text-2xl font-bold mb-3'>Facilities</h2>
