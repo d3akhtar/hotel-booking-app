@@ -1,12 +1,12 @@
 // using "my" in the name since this is the endpoint that lets users create, update, and view their own hotels
 
 import express, {NextFunction,Request,Response} from "express";
-import jwt, { JwtPayload } from 'jsonwebtoken';
 import multer from "multer";
 import cloudinary from "cloudinary";
-import Hotel, { HotelType } from "../models/hotel";
+import Hotel from "../models/hotel";
 import verifyToken from "../middleware/auth";
 import { body } from "express-validator";
+import { HotelType } from "../shared/types";
 
 const router = express.Router();
 
@@ -61,6 +61,19 @@ async (req: Request, res: Response) => {
     catch(e){
         console.log("Error creating hotel: " + e);
         return res.status(500).json({message: "Something went wrong"});
+    }
+})
+
+router.get("/", verifyToken, async (req: Request, res: Response) => {
+    try{
+        const hotels = await Hotel.find({userId: req.userId})
+        res.status(200).json(hotels)
+    }
+    catch (e){
+        console.log(e);
+        return res.status(500).json({
+            message: "Something went wrong"
+        })
     }
 })
 

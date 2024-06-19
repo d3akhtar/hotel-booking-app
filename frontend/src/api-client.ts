@@ -1,4 +1,5 @@
 // Where we put all our fetch requests, do this to make code cleaner. It's like how we put redux query stuff in a different location (kinda have to)
+import { HotelType } from "../../backend/src/shared/types";
 import {RegisterFormData} from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
 
@@ -79,5 +80,18 @@ export const addMyHotel = async(formData: FormData) => {
     }
     else{
         return result.json();
+    }
+}
+
+export const fetchMyHotels = async (): Promise<HotelType[]> => {
+    const url = `${API_BASE_URL}/api/my-hotels/`;
+    const response = await fetch(url, {
+        credentials: "include"
+    });
+    if (!response.ok){
+        throw new Error("Error while fetching hotels...")
+    }
+    else{
+        return response.json()
     }
 }
