@@ -66,3 +66,18 @@ export const signOut = async() => {
         throw new Error("Unknown error while signing out");
     }
 }
+
+export const addMyHotel = async(formData: FormData) => {
+    const url = `${API_BASE_URL}/api/my-hotels/`;
+    const result = await fetch(url, {
+        method: "POST",
+        credentials: "include",
+        body: formData
+    })
+    if (!result.ok){
+        throw new Error("Error occured while adding hotel...")
+    }
+    else{
+        return result.json();
+    }
+}

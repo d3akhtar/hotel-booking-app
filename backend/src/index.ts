@@ -36,7 +36,7 @@ app.get("/api/test", async (req, res : Response) => {
 })
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use("api/my-hotel", myHotelRoutes);
+app.use("/api/my-hotels", myHotelRoutes);
 
 app.listen(5000, () => {
     console.log("Listening on port 5000");
