@@ -4,6 +4,8 @@ import TypeSection from './formSections/TypeSection';
 import FacilitiesSection from './formSections/FacilitiesSection';
 import GuestsSection from './formSections/GuestsSection';
 import ImagesSection from './formSections/ImagesSection';
+import { HotelType } from '../../../../backend/src/shared/types';
+import { useEffect } from 'react';
 
 export type HotelFormData = {
   name: string,
@@ -15,6 +17,7 @@ export type HotelFormData = {
   starRating: number,
   facilities: string[],
   imageFiles: FileList,
+  imageUrls: string[] | null
   adultCount: number,
   childCount: number,
 }
@@ -22,11 +25,18 @@ export type HotelFormData = {
 type ManageHotelFormProps = {
   onSave: (hotelFormData : FormData) => void;
   isLoading: boolean
+  hotel: HotelType
 }
 
 
-function ManageHotelForm({onSave, isLoading}: ManageHotelFormProps) {
+function ManageHotelForm({onSave, isLoading, hotel}: ManageHotelFormProps) {
   const formMethods = useForm<HotelFormData>(); // since we have broken our form up, we need to use a form provider
+  const {reset} = formMethods;
+
+  useEffect(() => {
+    reset(hotel); // reset the form with new data
+  }, [hotel, reset]) // whenever hotel changes, this will run.
+
   const onSubmit = formMethods.handleSubmit((formData: HotelFormData) => {
     // create new FormData object
     console.log(formData)
@@ -55,6 +65,7 @@ function ManageHotelForm({onSave, isLoading}: ManageHotelFormProps) {
   return (
     <FormProvider {...formMethods}>
       <form className='flex flex-col gap-10' onSubmit={onSubmit}>
+        <h1 className='text-3xl font-bold mb-3 px-10'>{hotel ? "Edit":"Add"} Hotel</h1>
         <DetailsSection/>
         <TypeSection/>
         <FacilitiesSection/>

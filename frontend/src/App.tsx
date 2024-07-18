@@ -1,6 +1,6 @@
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Layout } from './layout'
-import { AddHotel, MyHotels, Register, SignIn } from './pages'
+import { AddHotel, EditHotel, MyHotels, Register, SignIn } from './pages'
 import { useAppContext } from '../contexts/AppContext'
 
 function App() {
@@ -28,6 +28,11 @@ function App() {
             <Route path="/add-hotel" element={
               <Layout>
                 <AddHotel/>
+              </Layout>}>
+            </Route>
+            <Route path="/edit-hotel/:hotelId" element={
+              <Layout>
+                <EditHotel/>
               </Layout>}>
             </Route>
             <Route path="/my-hotels" element={
